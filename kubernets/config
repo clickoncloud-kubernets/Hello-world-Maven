@@ -1,0 +1,31 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeU1USXhOREE0TXpVeE1Gb1hEVE15TVRJeE1UQTRNelV4TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTWo3CnNZK3I1M1pyL01hTHBKc0xtT1hUUUFrQVRpa2JSQWpMVXg0UlFQaHU3RnpIdlh2UGRJbzhaTmpIU1JUZmlLMFAKMi95ZUh1MmZJTTU4NmlLNnh2bTFoZU14T1pPZUlZVmdnUFNDdWtsT3psNVFMOHVpQnQ0Smt4eXRNMmFvaHZPQwpWbHNnUmY2N3h5UDJud0tEOWlmY0M5Q3pqQVYzbE1pNWluWFBmWVdwUW5XaVRyZGhWbHNxR3IxSVdIRXZOV1cxClZ1Rm56M2VQaW1mMUY2UHRzTWtOdHlnT1NidEZ3cXJNVWlwUUxPazE4VDgvZDI0amE2SUlsbzVCMFpnWnZvak8KejNaQldwSUFCVkkrR2ljVWFiSjZZeFVFaGNLZS9TYmFLd05ZSW9kNU4vSGFVNlRSQXlTK2VUdllVYUxCVWNqRgpsNk5EYkkyWEhPMWREeWszMFJFQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZJM1pWUlRDaWlrbFNiYnRlSTNHRXdnVG5lZy9NQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBSzgrbDU3SmxVdmxFbDRYRVRjNgpsQXNld3g1MGh6YUhwcVJReWZkU242YlRTQ2ZOc3lBUXllUVFIWmpIbVVXZlBYeWZFbGdmYXVMMGx2bW5rN05VCjR3NE9FWFN5T3hHZTUzSk5FYXplNlMwLyt5VWFQbmhNMjhXSlB5eDVsSXlIc3N2SkVaVmNGeVJQY3E3VHlZaSsKNEtGam1LZnZVTnIrQURFRmY5Tk9acG1HMHVyemtDUUlUb0hVeEU0eHV3SUNXRmhwUHpFZGZLc2pSaUFHcHNTaworMEl3eSs0OFV3YjJQZEwzY0tMdkxLb0FsaW5ONWsvek1VRzM3aDRPTklmbTA3eThpc0thVGhsN0dSSUs0QmtaClR3eGt4Y0J2V0xhcE5qazVOOXlHeFRYM2dVZVFPM3o3a2xUQXVudDU3Mk1NSEZPQklwVVR3VXZ2eUxCTTBwSWoKRWtVPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://3C0343B98A3DE9FB167BE226BD4099B0.gr7.us-east-1.eks.amazonaws.com
+  name: farget-cluster.us-east-1.eksctl.io
+contexts:
+- context:
+    cluster: farget-cluster.us-east-1.eksctl.io
+    user: iam-root-account@farget-cluster.us-east-1.eksctl.io
+  name: iam-root-account@farget-cluster.us-east-1.eksctl.io
+current-context: iam-root-account@farget-cluster.us-east-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+- name: iam-root-account@farget-cluster.us-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - eks
+      - get-token
+      - --cluster-name
+      - farget-cluster
+      - --region
+      - us-east-1
+      command: aws
+      env:
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: regional
+      provideClusterInfo: false
