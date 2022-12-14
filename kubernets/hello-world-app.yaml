@@ -40,10 +40,8 @@ metadata:
   labels:
     app: hello-world-app
 spec:
+  ports:
+    - port: 80
   selector:
     app: hello-world-app
-  type: LoadBalancer
-  ports:
-  - nodePort: 31111
-    port: 80
-    targetPort: 8080
+  type: LoadBalancer    
