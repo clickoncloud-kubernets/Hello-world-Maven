@@ -32,19 +32,18 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8080
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: maven-app-service
-#   namespace: default
-#   labels:
-#     app: maven-app
-# spec:
-#   type: ClusterIP
-#   selector:
-#     app: maven-app
-#   ports:
-#   - port: 80
-#     targetPort: 8080
-#     protocol: TCP      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-app-loadbalancer
+  labels:
+    app: hello-world-app
+spec:
+  selector:
+    app: hello-world-app
+  type: LoadBalancer
+  ports:
+  - nodePort: 31111
+    port: 80
+    targetPort: 8080
