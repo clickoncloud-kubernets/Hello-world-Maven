@@ -26,15 +26,15 @@ pipeline{
             }
         }
         
-        // stage('DockerHub Push'){
-        //     steps{
-        //         withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-        //             sh "docker login -u soumenbiswas212 -p ${dockerHubPwd}"
-        //         }
+        stage('DockerHub Push'){
+            steps{
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u soumenbiswas212 -p ${dockerHubPwd}"
+                }
                 
-        //         sh "docker push clickoncloudkubernets/hello-world-maven:${DOCKER_TAG} "
-        //     }
-        // }
+                sh "docker push clickoncloudkubernets/hello-world-maven:${DOCKER_TAG} "
+            }
+        }
 		
         // stage('Connect Kubernets'){
         //     steps{
