@@ -52,11 +52,11 @@ pipeline{
         //     }
         // }	    
 	    
-        // stage('Deploy Kubernets'){
-        //     steps{ 
-        //         sh "kubectl apply -f kubernets/maven-app.yaml"  
-        //     }
-        // }	    
+        stage('Deploy Kubernets'){
+            steps{ 
+                sh "kubectl apply -f kubernets/hello-world-app.yaml"  
+            }
+        }	    
 		
 		
 		

@@ -1,0 +1,50 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJzb3VtZW5iaXN3YXMyMTIiLCJwYXNzd29yZCI6IkMwbGxlY3RpMG4iLCJlbWFpbCI6InNvdW1lbi5iaXN3YXMyMTJAZ21haWwuY29tIiwiYXV0aCI6ImMyOTFiV1Z1WW1semQyRnpNakV5T2tNd2JHeGxZM1JwTUc0PSJ9fX0=
+kind: Secret
+metadata:
+  name: my-docker-account-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-app
+  template:
+    metadata:
+      labels:
+        app: hello-world-app
+    spec:   
+      imagePullSecrets:
+        - name: my-docker-account-secret    
+      containers:
+      - name: hello-world-app-container
+        #image: clickoncloudkubernets/hello-world-maven:DOCKER_TAG_REPLACE
+        image: clickoncloudkubernets/hello-world-maven:4f30d80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: maven-app-service
+#   namespace: default
+#   labels:
+#     app: maven-app
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: maven-app
+#   ports:
+#   - port: 80
+#     targetPort: 8080
+#     protocol: TCP      
